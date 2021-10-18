@@ -5,6 +5,7 @@
 #include <list>
 #include <mutex>
 #include <thread>
+#include <condition_variable>
 
 class Logger{
     public:
@@ -20,5 +21,6 @@ class Logger{
         std::list<ILogBackendPtr> m_backends;
         mutable std::mutex m_lock;
         std::thread m_thread;
+        std::condition_variable m_queueUpdated;
         bool m_running;
 };
